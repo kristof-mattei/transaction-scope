@@ -60,10 +60,10 @@
     <Folder Include="Tables" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Tables\Artists.sql">
+    <Build Include="Tables\Products.sql">
       <ApplicationScope>Auto</ApplicationScope>
     </Build>
-    <Build Include="Tables\Albums.sql" />
-    <Build Include="Tables\xx.sql" />
+    <Build Include="Tables\Brands.sql" />
+    <Build Include="Tables\Categories.sql" />
   </ItemGroup>
 </Project>

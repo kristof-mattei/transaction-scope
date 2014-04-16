@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[T2] (
+    [Key]   INT IDENTITY (1, 1) NOT NULL,
+    [T1Key] INT NOT NULL,
+    PRIMARY KEY CLUSTERED ([Key] ASC),
+    CONSTRAINT [FK_T2_T1] FOREIGN KEY ([T1Key]) REFERENCES [dbo].[T1] ([Key])
+);
+

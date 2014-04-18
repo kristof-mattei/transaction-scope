@@ -102,6 +102,7 @@
                     using (var sqlConnection = new SqlConnection(ConnectionString))
                     {
                         sqlConnection.Open();
+                        
                         ExecuteNonQuery(sqlConnection, Resources.Deletion);
 
                         transactionScope.Complete();

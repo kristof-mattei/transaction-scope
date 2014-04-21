@@ -15,7 +15,7 @@
         /// <summary>
         ///     Default connection string for all connnections, change 'ProjectsV12' to 'V11.0' for SQL Server Express LocalDb 2012
         /// </summary>
-        private const string ConnectionString = @"Server=(localdb)\ProjectsV12; Trusted_Connection=SSPI";
+        private const string ConnectionString = @"Server=(localdb)\ProjectsV12; Trusted_Connection=SSPI; Application Name=TransactionScopeTests";
 
         private static class Resources
         {
@@ -162,9 +162,9 @@
                         int t2Count = sqlDataReader.GetInt32(1);
                         int t3Count = sqlDataReader.GetInt32(2);
 
-                        Assert.AreEqual(t1Count, 6);
-                        Assert.AreEqual(t2Count, 5);
-                        Assert.AreEqual(t3Count, 5, "Transaction should've been rolled back, this should be 5");
+                        Assert.AreEqual(6, t1Count);
+                        Assert.AreEqual(5, t2Count);
+                        Assert.AreEqual(5, t3Count, "Transaction should've been rolled back, this should be 5");
                     }
                 }
             }

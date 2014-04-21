@@ -28,10 +28,10 @@
         ///     Defines the default transaction options
         /// </summary>
         private readonly TransactionOptions _defaultTransactionOptions = new TransactionOptions()
-                                                                             {
-                                                                                 IsolationLevel = IsolationLevel.ReadCommitted,
-                                                                                 Timeout = TransactionManager.DefaultTimeout
-                                                                             };
+                                                                         {
+                                                                             IsolationLevel = IsolationLevel.ReadCommitted,
+                                                                             Timeout = TransactionManager.DefaultTimeout
+                                                                         };
 
         [TestInitialize]
         public void Initialize()
@@ -91,6 +91,26 @@
             }
         }
 
+        [TestMethod]
+        [Description("Opens the SqlConnection without transaction, complete erroneous behavior.")]
+        public void SqlConnectionWithoutTransaction()
+        {
+            try
+            {
+                using (var sqlConnection = new SqlConnection(ConnectionString))
+                {
+                    sqlConnection.Open();
+
+                    ExecuteNonQuery(sqlConnection, Resources.Deletion);
+                }
+            }
+            catch (SqlException sqlException)
+            {
+                Debug.Write(sqlException);
+                ValidateDatabase();
+            }
+        }
+
         [Description("Construct and opens a Sql Connection inside a TransactionScope, thus causing the command beeing part of a transaction.")]
         [TestMethod]
         public void TransactionScopeSqlConnectionOpen()
@@ -102,7 +122,7 @@
                     using (var sqlConnection = new SqlConnection(ConnectionString))
                     {
                         sqlConnection.Open();
-                        
+
                         ExecuteNonQuery(sqlConnection, Resources.Deletion);
 
                         transactionScope.Complete();

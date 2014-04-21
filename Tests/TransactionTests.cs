@@ -68,6 +68,7 @@
 
         [TestMethod]
         [Description("Opens the SqlConnection outside of the TransactionScope, thus causing the command not to use a transaction.")]
+        [ExpectedException(typeof (AssertFailedException), "This one is supposed to fail.")]
         public void SqlConnectionOpenTransactionScope()
         {
             try
@@ -92,6 +93,7 @@
         }
 
         [TestMethod]
+        [ExpectedException(typeof (AssertFailedException), "This one is supposed to fail.")]
         [Description("Opens the SqlConnection without transaction, complete erroneous behavior.")]
         public void SqlConnectionWithoutTransaction()
         {
